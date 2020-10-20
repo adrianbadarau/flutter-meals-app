@@ -18,17 +18,15 @@ class MyApp extends StatelessWidget {
         canvasColor: Colors.blueGrey[100],
         fontFamily: 'Raleway',
         textTheme: ThemeData.light().textTheme.copyWith(
-          bodyText2: TextStyle(color: Color.fromRGBO(20, 51, 51, 1)),
-          bodyText1: TextStyle(color: Color.fromRGBO(20, 51, 51, 1)),
-          headline6: TextStyle(fontSize: 24, fontFamily: 'RobotoCondensed')
-        ),
+            bodyText2: TextStyle(color: Color.fromRGBO(20, 51, 51, 1)),
+            bodyText1: TextStyle(color: Color.fromRGBO(20, 51, 51, 1)),
+            headline6: TextStyle(fontSize: 24, fontFamily: 'RobotoCondensed')),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Categories(),
       routes: {
-        '/categories-meals': (cxt) => CategoryMeals()
+        Categories.routeName: (ctx) => Categories(),
+        CategoryMeals.routeName: (cxt) => CategoryMeals()
       },
     );
   }
 }
-
