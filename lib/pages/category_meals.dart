@@ -29,7 +29,7 @@ class CategoryMeals extends StatelessWidget {
             affordability: meal.affordability,
             complexity: meal.complexity,
             duration: meal.duration,
-            imangeUrl: meal.imageUrl,
+            imageUrl: meal.imageUrl,
           );
         },
         itemCount: categoryMeals.length,
