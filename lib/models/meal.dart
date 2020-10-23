@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 
 enum Complexity { Simple, Challenging, Hard }
 
-enum Affordabilty { Affordable, Pricey, Luxurious }
+enum Affordability { Affordable, Pricey, Luxurious }
 
 class Meal {
   final String id;
@@ -13,7 +13,7 @@ class Meal {
   final List<String> steps;
   final int duration;
   final Complexity complexity;
-  final Affordabilty affordability;
+  final Affordability affordability;
   final bool isGlutenFree;
   final bool isLactoseFree;
   final bool isVegan;
