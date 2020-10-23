@@ -25,6 +25,7 @@ class CategoryMeals extends StatelessWidget {
         itemBuilder: (ctx, index) {
           var meal = DUMMY_MEALS[index];
           return MealItem(
+            id: meal.id,
             title: meal.title,
             affordability: meal.affordability,
             complexity: meal.complexity,
