@@ -10,7 +10,10 @@ class Tabs extends StatefulWidget {
 }
 
 class _TabsState extends State<Tabs> {
-  final List<Widget> _pages = [Categories(), Favorites()];
+  final List<Map<String,Object>> _pages = [
+    {'page':Categories(), 'title':'Categories'},
+    {'page':Favorites(), 'title':'Favorites'},
+  ];
   int _selectedPageIndex = 0;
 
   void _selectPage(int index) {
@@ -23,9 +26,9 @@ class _TabsState extends State<Tabs> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Meals'),
+        title: Text(_pages[_selectedPageIndex]['title']),
       ),
-      body: _pages[_selectedPageIndex],
+      body: _pages[_selectedPageIndex]['page'],
       bottomNavigationBar: BottomNavigationBar(
         onTap: _selectPage,
         backgroundColor: Theme.of(context).primaryColor,
