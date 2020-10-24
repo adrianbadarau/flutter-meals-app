@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:meals_app/pages/categories.dart';
 import 'package:meals_app/pages/category_meals.dart';
 import 'package:meals_app/pages/meal_detail.dart';
+import 'package:meals_app/pages/tabs.dart';
 
 void main() {
   runApp(MyApp());
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       routes: {
-        Categories.routeName: (ctx) => Categories(),
+        Categories.routeName: (ctx) => Tabs(),
         CategoryMeals.routeName: (cxt) => CategoryMeals(),
         MealDetail.routeName: (context) => MealDetail()
       },
