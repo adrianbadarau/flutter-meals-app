@@ -4,6 +4,10 @@ import 'package:meals_app/dummy_data.dart';
 class MealDetail extends StatelessWidget {
   static const routeName = '/meal-detail';
 
+  final Function toggleFavorite;
+
+  MealDetail(this.toggleFavorite);
+
   @override
   Widget build(BuildContext context) {
     final selectedMeal = DUMMY_MEALS.firstWhere(
@@ -46,9 +50,9 @@ class MealDetail extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.delete),
-        onPressed: (){
-          Navigator.of(context).pop(selectedMeal.id);
+        child: Icon(Icons.star),
+        onPressed: () {
+          toggleFavorite(selectedMeal.id);
         },
       ),
     );

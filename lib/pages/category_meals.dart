@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:meals_app/models/meal.dart';
 import 'package:meals_app/widgets/meal_item.dart';
-import '../dummy_data.dart';
 
 class CategoryMeals extends StatefulWidget {
   static const routeName = '/category-meals';
 
-  List<Meal> availableMeals;
+  final List<Meal> availableMeals;
 
   @override
   _CategoryMealsState createState() => _CategoryMealsState();
@@ -41,7 +40,6 @@ class _CategoryMealsState extends State<CategoryMeals> {
             complexity: meal.complexity,
             duration: meal.duration,
             imageUrl: meal.imageUrl,
-            removeItem: _removeMeal,
           );
         },
         itemCount: categoryMeals.length,
