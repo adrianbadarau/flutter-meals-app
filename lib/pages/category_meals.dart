@@ -18,12 +18,6 @@ class _CategoryMealsState extends State<CategoryMeals> {
   List<Meal> categoryMeals;
   var loadedInitData = false;
 
-  void _removeMeal(String id) {
-    setState(() {
-      this.categoryMeals.removeWhere((element) => element.id == id);
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
