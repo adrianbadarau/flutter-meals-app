@@ -5,18 +5,15 @@ class Filter extends StatefulWidget {
   static const routeName = '/filter';
 
   final Function saveFliters;
+  final Map<String, bool> filters;
 
-  Filter(this.saveFliters);
+  Filter(this.saveFliters, this.filters);
 
   @override
   _FilterState createState() => _FilterState();
 }
 
 class _FilterState extends State<Filter> {
-  var _glutenFree = false;
-  var _vegetarian = false;
-  var _vegan = false;
-  var _lactoseFree = false;
 
   @override
   Widget build(BuildContext context) {
@@ -26,13 +23,8 @@ class _FilterState extends State<Filter> {
         actions: [
           IconButton(
             icon: Icon(Icons.save),
-            onPressed: (){
-              widget.saveFliters({
-                'glutenFree': _glutenFree,
-                'lactoseFree': _lactoseFree,
-                'vegetarian': _vegetarian,
-                'vegan': _vegan
-              });
+            onPressed: () {
+              widget.saveFliters(widget.filters);
             },
           )
         ],
@@ -50,24 +42,24 @@ class _FilterState extends State<Filter> {
           Expanded(
             child: ListView(
               children: [
-                _buildFilterSwitch('Gluten Free', _glutenFree, (newValue) {
+                _buildFilterSwitch('Gluten Free', widget.filters['glutenFree'], (newValue) {
                   setState(() {
-                    _glutenFree = newValue;
+                    widget.filters['glutenFree'] = newValue;
                   });
                 }),
-                _buildFilterSwitch('Lactose Free', _lactoseFree, (newValue) {
+                _buildFilterSwitch('Lactose Free', widget.filters['lactoseFree'], (newValue) {
                   setState(() {
-                    _lactoseFree = newValue;
+                    widget.filters['lactoseFree'] = newValue;
                   });
                 }),
-                _buildFilterSwitch('Vegetarian', _vegetarian, (newValue) {
+                _buildFilterSwitch('Vegetarian', widget.filters['vegetarian'], (newValue) {
                   setState(() {
-                    _vegetarian = newValue;
+                    widget.filters['vegetarian'] = newValue;
                   });
                 }),
-                _buildFilterSwitch('Vegan', _vegan, (newValue) {
+                _buildFilterSwitch('Vegan', widget.filters['vegan'], (newValue) {
                   setState(() {
-                    _vegan = newValue;
+                    widget.filters['vegan'] = newValue;
                   });
                 }),
               ],

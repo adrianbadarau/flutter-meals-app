@@ -69,7 +69,7 @@ class _MyAppState extends State<MyApp> {
         MealDetail.routeName: (context) => MealDetail(),
         Favorites.routeName: (context) => Favorites(),
         Categories.routeName: (context) => Categories(),
-        Filter.routeName: (context) => Filter(_setFilters)
+        Filter.routeName: (context) => Filter(_setFilters, _filters)
       },
       onGenerateRoute: (settings) {
         return MaterialPageRoute(builder: (context) => Categories());
