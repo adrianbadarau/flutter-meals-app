@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:meals_app/pages/categories.dart';
 import 'package:meals_app/pages/category_meals.dart';
 import 'package:meals_app/pages/favorites.dart';
+import 'package:meals_app/pages/filter.dart';
 import 'package:meals_app/pages/meal_detail.dart';
 import 'package:meals_app/pages/tabs.dart';
 
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
         MealDetail.routeName: (context) => MealDetail(),
         Favorites.routeName: (context) => Favorites(),
         Categories.routeName: (context) => Categories(),
+        Filter.routeName: (context) => Filter()
       },
       onGenerateRoute: (settings){
         return MaterialPageRoute(

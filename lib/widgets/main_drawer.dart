@@ -3,6 +3,7 @@ import 'package:meals_app/models/category.dart';
 import 'package:meals_app/pages/categories.dart';
 import 'package:meals_app/pages/category_meals.dart';
 import 'package:meals_app/pages/favorites.dart';
+import 'package:meals_app/pages/filter.dart';
 import 'package:meals_app/pages/tabs.dart';
 
 class MainDrawer extends StatelessWidget {
@@ -32,7 +33,7 @@ class MainDrawer extends StatelessWidget {
           buildNavigationMenuItem(
             context: context,
             icon: Icons.settings,
-            routeName: Favorites.routeName,
+            routeName: Filter.routeName,
             title: 'Filter'
           )
         ],
