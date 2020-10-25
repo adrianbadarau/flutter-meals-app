@@ -3,7 +3,7 @@ import 'package:meals_app/dummy_data.dart';
 import 'package:meals_app/widgets/category_item.dart';
 
 class Categories extends StatelessWidget {
-  static const routeName = '/';
+  static const routeName = '/categories';
 
   @override
   Widget build(BuildContext context) {

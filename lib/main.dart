@@ -27,10 +27,11 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       routes: {
-        Categories.routeName: (ctx) => Tabs(),
+        Tabs.routeName: (ctx) => Tabs(),
         CategoryMeals.routeName: (cxt) => CategoryMeals(),
         MealDetail.routeName: (context) => MealDetail(),
         Favorites.routeName: (context) => Favorites(),
+        Categories.routeName: (context) => Categories(),
       },
       onGenerateRoute: (settings){
         return MaterialPageRoute(

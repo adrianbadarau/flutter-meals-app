@@ -4,6 +4,8 @@ import 'package:meals_app/pages/favorites.dart';
 import 'package:meals_app/widgets/main_drawer.dart';
 
 class Tabs extends StatefulWidget {
+  static const routeName = '/';
+
   Tabs({Key key}) : super(key: key);
 
   @override
