@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meals_app/dummy_data.dart';
 import 'package:meals_app/pages/categories.dart';
 import 'package:meals_app/pages/category_meals.dart';
 import 'package:meals_app/pages/favorites.dart';
@@ -10,8 +11,43 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   // This widget is the root of your application.
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  Map<String, bool> _filters = {
+    'glutenFree': false,
+    'lactoseFree': false,
+    'vegetarian': false,
+    'vegan': false
+  };
+
+  var _availableMeals = DUMMY_MEALS;
+
+  void _setFilters(Map<String, bool> filterData) {
+    setState(() {
+      _filters = filterData;
+      _availableMeals = DUMMY_MEALS.where((element) {
+        if(_filters['glutenFree'] && !element.isGlutenFree){
+          return false;
+        }
+        if(_filters['lactoseFree'] && !element.isLactoseFree){
+          return false;
+        }
+        if(_filters['vegetarian'] && !element.isVegetarian){
+          return false;
+        }
+        if(_filters['vegan'] && !element.isVegan){
+          return false;
+        }
+        return true;
+      }).toList();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -29,21 +65,17 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         Tabs.routeName: (ctx) => Tabs(),
-        CategoryMeals.routeName: (cxt) => CategoryMeals(),
+        CategoryMeals.routeName: (cxt) => CategoryMeals(availableMeals: _availableMeals),
         MealDetail.routeName: (context) => MealDetail(),
         Favorites.routeName: (context) => Favorites(),
         Categories.routeName: (context) => Categories(),
-        Filter.routeName: (context) => Filter()
+        Filter.routeName: (context) => Filter(_setFilters)
       },
-      onGenerateRoute: (settings){
-        return MaterialPageRoute(
-          builder: (context) => Categories()
-        );
+      onGenerateRoute: (settings) {
+        return MaterialPageRoute(builder: (context) => Categories());
       },
-      onUnknownRoute: (settings){
-        return MaterialPageRoute(
-          builder: (context) => Categories()
-        );
+      onUnknownRoute: (settings) {
+        return MaterialPageRoute(builder: (context) => Categories());
       },
     );
   }

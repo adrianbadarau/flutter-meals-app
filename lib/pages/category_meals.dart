@@ -6,8 +6,12 @@ import '../dummy_data.dart';
 class CategoryMeals extends StatefulWidget {
   static const routeName = '/category-meals';
 
+  List<Meal> availableMeals;
+
   @override
   _CategoryMealsState createState() => _CategoryMealsState();
+
+  CategoryMeals({this.availableMeals});
 }
 
 class _CategoryMealsState extends State<CategoryMeals> {
@@ -49,8 +53,9 @@ class _CategoryMealsState extends State<CategoryMeals> {
   void didChangeDependencies() {
     if (!loadedInitData) {
       routeArgs = ModalRoute.of(context).settings.arguments as Map<String, String>;
-      categoryMeals =
-          DUMMY_MEALS.where((element) => element.categories.contains(routeArgs['id'])).toList();
+      categoryMeals = widget.availableMeals
+          .where((element) => element.categories.contains(routeArgs['id']))
+          .toList();
       loadedInitData = true;
     }
     super.didChangeDependencies();
