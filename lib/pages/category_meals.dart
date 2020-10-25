@@ -1,29 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:meals_app/models/meal.dart';
 import 'package:meals_app/widgets/meal_item.dart';
 import '../dummy_data.dart';
 
-class CategoryMeals extends StatelessWidget {
+class CategoryMeals extends StatefulWidget {
   static const routeName = '/category-meals';
 
-  // final String categoryId;
-  // final String categoryTitle;
-  //
-  // CategoryMeals({this.categoryId, this.categoryTitle});
+  @override
+  _CategoryMealsState createState() => _CategoryMealsState();
+}
+
+class _CategoryMealsState extends State<CategoryMeals> {
+  Map<String, String> routeArgs;
+  List<Meal> categoryMeals;
+  var loadedInitData = false;
+
+  void _removeMeal(String id) {
+    setState(() {
+      this.categoryMeals.removeWhere((element) => element.id == id);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    final routeArgs =
-        ModalRoute.of(context).settings.arguments as Map<String, String>;
-    final categoryMeals = DUMMY_MEALS
-        .where((element) => element.categories.contains(routeArgs['id']))
-        .toList();
     return Scaffold(
       appBar: AppBar(
         title: Text(routeArgs['title']),
       ),
       body: ListView.builder(
         itemBuilder: (ctx, index) {
-          var meal = DUMMY_MEALS[index];
+          var meal = categoryMeals[index];
           return MealItem(
             id: meal.id,
             title: meal.title,
@@ -31,10 +37,22 @@ class CategoryMeals extends StatelessWidget {
             complexity: meal.complexity,
             duration: meal.duration,
             imageUrl: meal.imageUrl,
+            removeItem: _removeMeal,
           );
         },
         itemCount: categoryMeals.length,
       ),
     );
+  }
+
+  @override
+  void didChangeDependencies() {
+    if (!loadedInitData) {
+      routeArgs = ModalRoute.of(context).settings.arguments as Map<String, String>;
+      categoryMeals =
+          DUMMY_MEALS.where((element) => element.categories.contains(routeArgs['id'])).toList();
+      loadedInitData = true;
+    }
+    super.didChangeDependencies();
   }
 }

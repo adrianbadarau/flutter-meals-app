@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:meals_app/models/category.dart';
-import 'package:meals_app/pages/categories.dart';
-import 'package:meals_app/pages/category_meals.dart';
-import 'package:meals_app/pages/favorites.dart';
 import 'package:meals_app/pages/filter.dart';
 import 'package:meals_app/pages/tabs.dart';
 

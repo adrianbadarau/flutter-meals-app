@@ -9,6 +9,7 @@ class MealItem extends StatelessWidget {
   final int duration;
   final Complexity complexity;
   final Affordability affordability;
+  final Function removeItem;
 
   String get complexityText {
     switch (complexity) {
@@ -44,10 +45,15 @@ class MealItem extends StatelessWidget {
     @required this.duration,
     @required this.complexity,
     @required this.affordability,
+    @required this.removeItem,
   }) : super(key: key);
 
   void selectMeal(BuildContext context) {
-    Navigator.of(context).pushNamed(MealDetail.routeName, arguments: id);
+    Navigator.of(context).pushNamed(MealDetail.routeName, arguments: id).then((value) {
+      if (value != null) {
+        removeItem(value);
+      }
+    });
   }
 
   @override
@@ -64,8 +70,7 @@ class MealItem extends StatelessWidget {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(15),
-                      topRight: Radius.circular(15)),
+                      topLeft: Radius.circular(15), topRight: Radius.circular(15)),
                   child: Image.network(
                     imageUrl,
                     height: 250,
@@ -99,18 +104,10 @@ class MealItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Row(
-                    children: [
-                      Icon(Icons.schedule),
-                      SizedBox(width: 6),
-                      Text('$duration min')
-                    ],
+                    children: [Icon(Icons.schedule), SizedBox(width: 6), Text('$duration min')],
                   ),
                   Row(
-                    children: [
-                      Icon(Icons.work),
-                      SizedBox(width: 6),
-                      Text('$complexityText')
-                    ],
+                    children: [Icon(Icons.work), SizedBox(width: 6), Text('$complexityText')],
                   ),
                   Row(
                     children: [
